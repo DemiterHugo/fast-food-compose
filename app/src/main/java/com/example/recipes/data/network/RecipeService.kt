@@ -1,5 +1,6 @@
 package com.example.recipes.data.network
 
+import com.example.recipes.data.network.entities.pizzas.ApiPizzaResponse
 import com.example.recipes.data.network.entities.randomrecipes.ApiRandomResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -16,7 +17,8 @@ interface RecipeService {
     @GET("/food/menuItems/search?")
     suspend fun getPizzas(
         @Query("apiKey") apiKey: String,
-        @Query("query") query: String
-    )
+        @Query("query") query: String,
+        //@Query("addMenuItemInformation") addMenuItemInformation: Boolean
+    ):ApiPizzaResponse
 
 }

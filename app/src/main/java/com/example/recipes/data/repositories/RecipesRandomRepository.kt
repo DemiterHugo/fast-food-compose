@@ -23,7 +23,3 @@ fun ApiRecipe.asRecipe(): Recipe = Recipe(
     description = summary,
     thumbnail = image
 )
-
-val recipes = (1..10).map {
-    Recipe(id = it, name = "Name $it", description = "description $it", thumbnail = "https://spoonacular.com/recipeImages/715449-556x370.jpg")
-}
