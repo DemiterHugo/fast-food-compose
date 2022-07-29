@@ -19,6 +19,7 @@ object PizzasRepository {
 
 fun ApiMenuItem.asPizza(): Pizza{
     return Pizza(
+        id = id,
         price = "${(id/100000)*10} €",
         title = title,
         image = image,

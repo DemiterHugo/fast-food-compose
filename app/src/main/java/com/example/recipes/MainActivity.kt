@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.data.entities.Recipe
+import com.example.recipes.ui.navigation.Navigation
 import com.example.recipes.ui.screens.pizzas.PizzasScreen
 import com.example.recipes.ui.screens.recipes.RecipesScreen
 import com.example.recipes.ui.theme.RecipesTheme
@@ -29,7 +30,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             RecipeApp{
                 //RecipesScreen()
-                PizzasScreen()
+                //PizzasScreen()
+                Navigation()
             }
         }
     }

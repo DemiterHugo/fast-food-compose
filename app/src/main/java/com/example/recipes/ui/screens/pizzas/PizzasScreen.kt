@@ -2,6 +2,7 @@ package com.example.recipes.ui.screens.pizzas
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
@@ -17,46 +18,43 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.repositories.PizzasRepository
+import com.example.recipes.ui.screens.common.Thumb
 
 
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun PizzasScreen() {
+fun PizzasScreen(onClicked: (id: Int) -> Unit) {
     // que la primera ves utilice la lista vacia de Recipes pero que las siguientes use esa misma lista en lugar d vover a crear una
     var pizzasState by remember{ mutableStateOf(emptyList<Pizza>())}
 
     LaunchedEffect(true){
         pizzasState = PizzasRepository.getPizzas()
     }
-    PizzasScreen(pizzas= pizzasState)
+    PizzasScreen(pizzas= pizzasState, onClicked = {onClicked(it)})
 }
 
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun PizzasScreen(pizzas: List<Pizza>){
+fun PizzasScreen(pizzas: List<Pizza>,onClicked: (id: Int) -> Unit){
     LazyVerticalGrid(cells = GridCells.Adaptive(200.dp), contentPadding = PaddingValues(10.dp)){
         items(pizzas){
-            PizzaItem(it)
+            PizzaItem(it, onClicked = {onClicked(it.id)})
         }
     }
 }
 
 @ExperimentalCoilApi
 @Composable
-fun PizzaItem(pizza: Pizza) {
-    Column(modifier = Modifier.padding(6.dp)) {
+fun PizzaItem(pizza: Pizza, onClicked: ()-> Unit) {
+    Column(
+        modifier = Modifier
+            .padding(6.dp)
+            .clickable {onClicked()  }
+    ){
         Card(modifier = Modifier.width(200.dp)) {
-            Image(
-                painter = rememberImagePainter(pizza.image),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f),
-
-                contentScale = ContentScale.Crop
-            )
+            Thumb(pizza = pizza)
         }
         Text(
             text = pizza.title, maxLines = 2)
