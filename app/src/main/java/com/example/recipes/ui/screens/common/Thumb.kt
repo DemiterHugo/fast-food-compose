@@ -13,11 +13,11 @@ import com.example.recipes.data.entities.Pizza
 
 @ExperimentalCoilApi
 @Composable
-fun Thumb(pizza: Pizza) {
+fun Thumb(pizza: Pizza, modifier: Modifier = Modifier) {
     Image(
         painter = rememberImagePainter(pizza.image),
         contentDescription = null,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .aspectRatio(1f),
 

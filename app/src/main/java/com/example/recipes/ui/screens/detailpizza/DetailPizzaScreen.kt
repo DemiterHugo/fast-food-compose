@@ -1,9 +1,11 @@
 package com.example.recipes.ui.screens.detailpizza
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.repositories.PizzasRepository
@@ -34,6 +36,6 @@ fun DetailPizzaScreen(pizza: Pizza) {
             })
         }
     ){
-        Thumb(pizza = pizza)
+        Thumb(pizza = pizza, Modifier.padding(paddingValues = it))
     }
 }
