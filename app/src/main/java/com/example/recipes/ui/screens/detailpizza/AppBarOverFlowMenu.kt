@@ -10,6 +10,7 @@ import com.example.recipes.data.entities.Pizza
 @ExperimentalMaterialApi
 @Composable
 fun AppBarOverFlowMenu(pizza: Pizza) {
+    if (pizza.image.isEmpty()) return
     var showDropMenu by remember{ mutableStateOf(false) }
     var uriHandler = LocalUriHandler.current
 

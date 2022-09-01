@@ -6,20 +6,15 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Image
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.repositories.PizzasRepository
-import com.example.recipes.ui.navigation.ArrowBackIcon
 import com.example.recipes.ui.screens.common.Thumb
 
 @ExperimentalMaterialApi
@@ -42,27 +37,17 @@ fun DetailPizzaScreen(pizzaId: Int, onArrowClick: () -> Unit) {
 @Composable
 fun DetailPizzaScreen(pizza: Pizza, onArrowClick: ()-> Unit) {
 
-
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(text = pizza.title) },
-                navigationIcon = { ArrowBackIcon { onArrowClick() }},
-                actions = {
-                    AppBarOverFlowMenu(pizza)
-                }
-            )
-        }
-    ){
-        LazyColumn(modifier = Modifier.fillMaxWidth()){
+PizzaDetailScaffold(pizza = pizza, onArrowClick = onArrowClick){
+        LazyColumn(modifier = Modifier.fillMaxWidth().padding(it)){
             item {
                 Header(pizza = pizza)
             }
             infoNutrients("Nutrients",pizza)
         }
-
     }
 }
+
+
 
 @ExperimentalMaterialApi
 fun LazyListScope.infoNutrients(tite: String, pizza: Pizza){
