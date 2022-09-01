@@ -9,4 +9,5 @@ data class Pizza(
     val image: String,
     val restaurantChain: String,
     val servingSize: String,
+    val nutrition: Nutrition
 )

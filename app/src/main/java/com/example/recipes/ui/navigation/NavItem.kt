@@ -9,9 +9,7 @@ sealed class NavItem(
     val navArgs: List<NArgs> = emptyList()
 ){
     val route = run {
-        val argKeys = navArgs.map {
-            "{${it.key}}"
-        }
+        val argKeys = navArgs.map { "{${it.key}}" }
         listOf(baseRoute).plus(argKeys).joinToString("/")
     }
 
@@ -27,7 +25,7 @@ sealed class NavItem(
     }
 }
 
-//se pone * xq se trata de cualquier tipo (ej NavType.InType) que soporte Navtipe
+//se pone * xq se trata de cualquier tipo (ej NavType.IntType) que soporte Navtype
 enum class NArgs(val key: String, val navTipe: NavType<*>){
     PizzaId(key = "pizzaId", navTipe = NavType.IntType)
 }

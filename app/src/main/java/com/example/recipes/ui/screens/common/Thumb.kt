@@ -17,10 +17,9 @@ fun Thumb(pizza: Pizza, modifier: Modifier = Modifier) {
     Image(
         painter = rememberImagePainter(pizza.image),
         contentDescription = null,
+        contentScale = ContentScale.Crop,
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(1f),
-
-        contentScale = ContentScale.Crop
+            .aspectRatio(1f)
     )
 }
