@@ -8,13 +8,13 @@ import com.example.recipes.data.network.entities.randomrecipes.ApiRecipe
 object RecipesRandomRepository {
 
     private val apiKey = BuildConfig.API_KEY
-
+/*
     suspend fun getRecipesRandom(): List<Recipe>{
-        val result = ApiClient.recipeService.getRandomRecipes(apiKey, 5, "dessert")
+        val result = ApiClient.pizzasService.getRandomRecipes(apiKey, 5, "dessert")
         return result.recipes.map {
             it.asRecipe()
         }
-    }
+    }   */
 }
 
 fun ApiRecipe.asRecipe(): Recipe = Recipe(

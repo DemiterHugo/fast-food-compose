@@ -4,9 +4,10 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 
-@Parcelize
-data class Servings(
-    val number: Double,
-    val size: Double,
+
+data class Nutrient(
+    val amount: Double,
+    val name: String,
+    val percentOfDailyNeeds: Double,
     val unit: String
-): Parcelable
+)

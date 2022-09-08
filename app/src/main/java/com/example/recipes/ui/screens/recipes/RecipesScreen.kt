@@ -32,7 +32,7 @@ fun RecipesScreen(){
     //se ejecuta cada vez que lo que pasemos por parametro cambie, como el unit no cambia solo se hara una vez en lugar de hacer siempre
     //la peticion en la corrutina al recrearse el composable.
     LaunchedEffect(Unit){
-        recipesState = RecipesRandomRepository.getRecipesRandom()
+       // recipesState = RecipesRandomRepository.getRecipesRandom()
     }
 
     RecipesScreen(recipes = recipesState)

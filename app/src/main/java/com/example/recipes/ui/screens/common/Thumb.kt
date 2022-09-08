@@ -9,13 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.example.recipes.data.entities.Item
 import com.example.recipes.data.entities.Pizza
 
 @ExperimentalCoilApi
 @Composable
-fun Thumb(pizza: Pizza, modifier: Modifier = Modifier) {
+fun Thumb(item: Item, modifier: Modifier = Modifier) {
     Image(
-        painter = rememberImagePainter(pizza.image),
+        painter = rememberImagePainter(item.image),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = modifier

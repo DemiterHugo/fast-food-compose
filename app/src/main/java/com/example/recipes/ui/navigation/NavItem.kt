@@ -1,31 +1,44 @@
 package com.example.recipes.ui.navigation
 
+import androidx.annotation.StringRes
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Book
+import androidx.compose.material.icons.filled.Event
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.example.recipes.R
 
 
-sealed class NavItem(
-    val baseRoute: String,
+enum class NavItem(val navCommand: NavCommand, val icon: ImageVector, @StringRes val title: Int){
+    PIZZAS(NavCommand.ContentType(TypeOfMenu.PIZZA), Icons.Default.Face, R.string.pizzas),
+    BURGERS(NavCommand.ContentType(TypeOfMenu.BURGER), Icons.Default.Book, R.string.burgers),
+    SUSHIS(NavCommand.ContentType(TypeOfMenu.SUSHI), Icons.Default.Event, R.string.sushis)
+}
+
+sealed class NavCommand(
+    internal val typeMenu: TypeOfMenu,
+    val subroute: String = "home",
     val navArgs: List<NArgs> = emptyList()
 ){
     val route = run {
         val argKeys = navArgs.map { "{${it.key}}" }
-        listOf(baseRoute).plus(argKeys).joinToString("/")
+        listOf(typeMenu.routeType).plus(subroute).plus(argKeys).joinToString("/")
     }
 
     val arguments = navArgs.map {
-        navArgument(name = it.key){type = it.navTipe}
+        navArgument(name = it.key){type = it.navType}
     }
 
-    object Main: NavItem(baseRoute = "main")        //son dos objetos xq no reciben argumentos
-    object Detail: NavItem(baseRoute = "detailPizza", navArgs = listOf(NArgs.PizzaId)){
-        fun putIdInDetail(id: Int): String{
-            return "$baseRoute/$id"
-        }
+    class ContentType(menu: TypeOfMenu): NavCommand(typeMenu = menu)
+    class ContentDetail(menu: TypeOfMenu): NavCommand(menu, "detail", listOf(NArgs.ItemId)){
+        fun putIdInDetail(itemId: Int) = "${typeMenu.routeType}/$subroute/$itemId"
     }
 }
 
 //se pone * xq se trata de cualquier tipo (ej NavType.IntType) que soporte Navtype
-enum class NArgs(val key: String, val navTipe: NavType<*>){
-    PizzaId(key = "pizzaId", navTipe = NavType.IntType)
+enum class NArgs(val key: String, val navType: NavType<*>){
+    ItemId(key = "itemId", navType = NavType.IntType),
+
 }

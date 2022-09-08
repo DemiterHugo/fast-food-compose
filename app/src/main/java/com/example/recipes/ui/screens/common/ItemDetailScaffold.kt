@@ -15,27 +15,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ShareCompat
+import com.example.recipes.data.entities.Item
 import com.example.recipes.data.entities.Pizza
 import com.example.recipes.ui.navigation.ArrowBackIcon
 
 @ExperimentalMaterialApi
 @Composable
-fun PizzaDetailScaffold(pizza: Pizza, onArrowClick: () -> Unit, content: @Composable (PaddingValues) -> Unit) {
+fun ItemDetailScaffold(item: Item, onArrowClick: () -> Unit, content: @Composable (PaddingValues) -> Unit) {
 
     val context = LocalContext.current
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = pizza.title) },
+                title = { Text(text = item.title) },
                 navigationIcon = { ArrowBackIcon { onArrowClick() }},
                 actions = {
-                    AppBarOverFlowMenu(pizza)
+                    AppBarOverFlowMenu(item)
                 }
             )
         },
         floatingActionButton = {
-            if (pizza.image.isNotBlank()) {
-                FloatingActionButton(onClick = { sharePizza(context = context, pizza = pizza) }) {
+            if (item.image.isNotBlank()) {
+                FloatingActionButton(onClick = { sharePizza(context = context, item = item) }) {
                     Icon(imageVector = Icons.Default.Share, contentDescription = null)
                 }
             }
@@ -56,12 +57,12 @@ fun PizzaDetailScaffold(pizza: Pizza, onArrowClick: () -> Unit, content: @Compos
 }
 
 
-fun sharePizza(context: Context, pizza: Pizza){
+fun sharePizza(context: Context, item: Item){
     ShareCompat
         .IntentBuilder(context)
         .setType("text/plain")
-        .setSubject(pizza.title)
-        .setText(pizza.image)
+        .setSubject(item.title)
+        .setText(item.image)
         .intent
         .also { context.startActivity(it) }
 }
