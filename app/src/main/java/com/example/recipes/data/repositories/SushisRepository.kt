@@ -5,7 +5,7 @@ import com.example.recipes.data.entities.Item
 import com.example.recipes.data.entities.Sushi
 import com.example.recipes.data.network.ApiClient
 import com.example.recipes.data.network.entities.pizzas.ApiMenu
-import com.example.recipes.data.network.entities.pizzas.information.ApiSushis
+import com.example.recipes.data.network.entities.pizzas.ApiSushis
 
 object SushisRepository: Repository<Sushi>(){
 

@@ -33,14 +33,25 @@ fun <T: Item>ItemsListScreen(items: List<T>, onClicked1: (id: Int) -> Unit) {
             TopAppBar(title = { Text(stringResource(id = R.string.app_name)) })
         }
     ) {
-        LazyVerticalGrid(
-            cells = GridCells.Adaptive(200.dp),
-            contentPadding = PaddingValues(10.dp),
-            modifier = Modifier.padding(it)
-        ) {
-            items(items) {
-                ItemList(it) { onClicked1(it.id) }
-            }
+        ItemsList(modifier = Modifier.padding(it), items, onClicked1)
+    }
+}
+
+@ExperimentalCoilApi
+@ExperimentalFoundationApi
+@Composable
+fun <T : Item> ItemsList(
+    modifier: Modifier = Modifier,
+    items: List<T>,
+    onClicked1: (id: Int) -> Unit
+) {
+    LazyVerticalGrid(
+        cells = GridCells.Adaptive(200.dp),
+        contentPadding = PaddingValues(10.dp),
+        modifier = modifier
+    ) {
+        items(items) {
+            ItemList(it) { onClicked1(it.id) }
         }
     }
 }

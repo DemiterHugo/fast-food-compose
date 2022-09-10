@@ -1,4 +1,4 @@
-package com.example.recipes.data.network.entities.pizzas.information
+package com.example.recipes.data.network.entities.pizzas
 
 data class ApiPizzas(val headerTitle: String="Las mejores pizzas")
 

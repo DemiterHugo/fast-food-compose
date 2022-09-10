@@ -36,7 +36,7 @@ fun FoodApp(){
                 AppBottomNavigation(currentRoute = currentRoute, onNavItemClick = {
                     navController.navigatePoppingUpToStartDestination(it.navCommand.route)
                 })
-        } ) {
+            } ) {
             Box(modifier = Modifier.padding(it)){
                 Navigation(navController)
             }

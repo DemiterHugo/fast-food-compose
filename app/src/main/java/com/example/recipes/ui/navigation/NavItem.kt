@@ -2,6 +2,7 @@ package com.example.recipes.ui.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.Book
 import androidx.compose.material.icons.filled.Event
 import androidx.compose.material.icons.filled.Face
@@ -14,7 +15,8 @@ import com.example.recipes.R
 enum class NavItem(val navCommand: NavCommand, val icon: ImageVector, @StringRes val title: Int){
     PIZZAS(NavCommand.ContentType(TypeOfMenu.PIZZA), Icons.Default.Face, R.string.pizzas),
     BURGERS(NavCommand.ContentType(TypeOfMenu.BURGER), Icons.Default.Book, R.string.burgers),
-    SUSHIS(NavCommand.ContentType(TypeOfMenu.SUSHI), Icons.Default.Event, R.string.sushis)
+    SUSHIS(NavCommand.ContentType(TypeOfMenu.SUSHI), Icons.Default.Event, R.string.sushis),
+    APPLES(NavCommand.ContentType(TypeOfMenu.APPLE), Icons.Default.AccessTime, R.string.apples)
 }
 
 sealed class NavCommand(

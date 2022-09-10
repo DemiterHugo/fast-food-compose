@@ -34,5 +34,6 @@ object ApiClient {
     val pizzasService: PizzasService = restAdapter.create()
     val burgersService: BurgersService = restAdapter.create()
     val sushisService: SushisService = restAdapter.create()
+    val applesService: ApplesService = restAdapter.create()
 
 }

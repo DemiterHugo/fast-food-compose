@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
+import com.example.recipes.ui.screens.apples.ApplesScreen
 import com.example.recipes.ui.screens.burgers.BurgerDetailScreen
 import com.example.recipes.ui.screens.burgers.BurgersScreen
 import com.example.recipes.ui.screens.pizzas.PizzaDetailScreen
@@ -29,6 +30,9 @@ fun Navigation(navController: NavHostController) {
         PizzasNav(navController)
         BurgersNav(navController)
         SushisNav(navController)
+        fillComposable(NavCommand.ContentType(TypeOfMenu.APPLE)){
+            ApplesScreen()
+        }
     }
 }
 

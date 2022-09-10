@@ -6,7 +6,7 @@ import com.example.recipes.data.entities.Nutrition
 import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.network.ApiClient
 import com.example.recipes.data.network.entities.pizzas.*
-import com.example.recipes.data.network.entities.pizzas.information.ApiPizzas
+import com.example.recipes.data.network.entities.pizzas.ApiPizzas
 import kotlinx.parcelize.Parcelize
 
 object PizzasRepository: Repository<Pizza>() {

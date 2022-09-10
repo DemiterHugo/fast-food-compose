@@ -3,10 +3,9 @@ package com.example.recipes.data.repositories
 import android.util.Log
 import com.example.recipes.BuildConfig
 import com.example.recipes.data.entities.Burger
-import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.network.ApiClient
+import com.example.recipes.data.network.entities.pizzas.ApiBugers
 import com.example.recipes.data.network.entities.pizzas.ApiMenu
-import com.example.recipes.data.network.entities.pizzas.information.ApiBugers
 
 object BurgersRepository: Repository<Burger>() {
 
