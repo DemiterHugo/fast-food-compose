@@ -2,7 +2,7 @@ package com.example.recipes.data.entities
 
 
 
-data class Apples(
+data class Apple(
     val name: String,
     val results: List<Result>,
     val totalResults: Int,

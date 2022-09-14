@@ -12,5 +12,4 @@ interface ApplesService {
         @Query("query") query: String,
         @Query("number") number: Int
     ): AppleResponse
-
 }

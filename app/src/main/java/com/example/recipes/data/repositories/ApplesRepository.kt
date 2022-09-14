@@ -1,7 +1,7 @@
 package com.example.recipes.data.repositories
 
 import com.example.recipes.BuildConfig
-import com.example.recipes.data.entities.Apples
+import com.example.recipes.data.entities.Apple
 import com.example.recipes.data.entities.Result
 import com.example.recipes.data.network.ApiClient
 import com.example.recipes.data.network.entities.apple.ApiResult
@@ -10,9 +10,9 @@ import com.example.recipes.data.network.entities.apple.SearchResult
 object ApplesRepository{
 
     private val apiKey = BuildConfig.API_KEY
-    private var cache: List<Apples> = emptyList()
+    private var cache: List<Apple> = emptyList()
 
-    suspend fun getApples(): List<Apples>{
+    suspend fun getApples(): List<Apple>{
         if (cache.isEmpty()){
             cache = ApiClient.applesService.getApples(apiKey,"apple",4).searchResults.map {
                 it.asApple()
@@ -22,7 +22,7 @@ object ApplesRepository{
     }
 }
 
-fun SearchResult.asApple(): Apples = Apples(
+fun SearchResult.asApple(): Apple = Apple(
     name = name,
     results = results.asResults(),
     totalResults = totalResults,

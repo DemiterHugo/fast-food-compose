@@ -75,6 +75,9 @@ dependencies {
     //usar iconos
     implementation "androidx.compose.material:material-icons-extended:1.2.1"
     //para paginación
-    implementation "com.google.accompanist:accompanist-pager:0.20.0"
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
+    //despizar tab
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
+
 
 }

@@ -19,8 +19,10 @@ import com.example.recipes.ui.navigation.NavItem
 import com.example.recipes.ui.navigation.Navigation
 import com.example.recipes.ui.navigation.navigatePoppingUpToStartDestination
 import com.example.recipes.ui.theme.RecipesTheme
+import com.google.accompanist.pager.ExperimentalPagerApi
 
 
+@ExperimentalPagerApi
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @ExperimentalMaterialApi

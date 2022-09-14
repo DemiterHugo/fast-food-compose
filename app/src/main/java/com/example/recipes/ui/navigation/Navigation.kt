@@ -15,8 +15,10 @@ import com.example.recipes.ui.screens.pizzas.PizzaDetailScreen
 import com.example.recipes.ui.screens.pizzas.PizzasScreen
 import com.example.recipes.ui.screens.sushis.SushiDetailScreen
 import com.example.recipes.ui.screens.sushis.SushisScreen
+import com.google.accompanist.pager.ExperimentalPagerApi
 
 
+@ExperimentalPagerApi
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
