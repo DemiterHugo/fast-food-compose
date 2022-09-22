@@ -2,10 +2,7 @@ package com.example.recipes.ui.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.Book
-import androidx.compose.material.icons.filled.Event
-import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
@@ -16,7 +13,11 @@ enum class NavItem(val navCommand: NavCommand, val icon: ImageVector, @StringRes
     PIZZAS(NavCommand.ContentType(TypeOfMenu.PIZZA), Icons.Default.Face, R.string.pizzas),
     BURGERS(NavCommand.ContentType(TypeOfMenu.BURGER), Icons.Default.Book, R.string.burgers),
     SUSHIS(NavCommand.ContentType(TypeOfMenu.SUSHI), Icons.Default.Event, R.string.sushis),
-    APPLES(NavCommand.ContentType(TypeOfMenu.APPLE), Icons.Default.AccessTime, R.string.apples)
+    APPLES(NavCommand.ContentType(TypeOfMenu.APPLE), Icons.Default.AccessTime, R.string.apples),
+
+    USERS(NavCommand.ContentType(TypeOfMenu.USER), Icons.Default.VerifiedUser, R.string.users),
+    HOME(NavCommand.ContentType(TypeOfMenu.PIZZA), Icons.Default.Home, R.string.home),
+    SETTINGS(NavCommand.ContentType(TypeOfMenu.SETTING),Icons.Default.Settings, R.string.settings)
 }
 
 sealed class NavCommand(

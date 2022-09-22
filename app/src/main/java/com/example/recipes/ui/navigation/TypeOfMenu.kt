@@ -4,5 +4,9 @@ enum class TypeOfMenu(var routeType: String){
     PIZZA("pizza"),
     BURGER("burguer"),
     SUSHI("sushi"),
-    APPLE("apple")
+    APPLE("apple"),
+
+    USER("user"),
+    HOME("home"),
+    SETTING("setting")
 }

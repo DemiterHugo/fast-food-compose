@@ -1,8 +1,14 @@
 package com.example.recipes.ui.navigation
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -34,6 +40,16 @@ fun Navigation(navController: NavHostController) {
         SushisNav(navController)
         fillComposable(NavCommand.ContentType(TypeOfMenu.APPLE)){
             ApplesScreen()
+        }
+        fillComposable(NavCommand.ContentType(TypeOfMenu.SETTING)){
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                Text(text = "Settings ", style = MaterialTheme.typography.h3)
+            }
+        }
+        fillComposable(NavCommand.ContentType(TypeOfMenu.USER)){
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                Text(text = "User ", style = MaterialTheme.typography.h3)
+            }
         }
     }
 }

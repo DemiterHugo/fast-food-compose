@@ -21,14 +21,14 @@ import com.example.recipes.ui.navigation.ArrowBackIcon
 
 @ExperimentalMaterialApi
 @Composable
-fun ItemDetailScaffold(item: Item, onArrowClick: () -> Unit, content: @Composable (PaddingValues) -> Unit) {
+fun ItemDetailScaffold(item: Item, content: @Composable (PaddingValues) -> Unit) {
 
     val context = LocalContext.current
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = item.title) },
-                navigationIcon = { ArrowBackIcon { onArrowClick() }},
+                title = { Text(text = item.title.substringAfter(" ")) },
+                //navigationIcon = { ArrowBackIcon { onArrowClick() }},
                 actions = {
                     AppBarOverFlowMenu(item)
                 }

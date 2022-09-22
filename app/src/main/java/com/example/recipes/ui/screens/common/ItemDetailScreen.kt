@@ -22,7 +22,7 @@ import com.example.recipes.ui.screens.common.Thumb
 @Composable
 fun ItemDetailScreen(item: Item, onArrowClick: ()-> Unit) {
 
-ItemDetailScaffold(item = item, onArrowClick = onArrowClick){
+ItemDetailScaffold(item = item){
         LazyColumn(modifier = Modifier.fillMaxWidth().padding(it)){
             item {
                 Header(item)

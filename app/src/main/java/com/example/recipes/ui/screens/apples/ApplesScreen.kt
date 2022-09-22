@@ -47,12 +47,12 @@ fun ApplesScreen() {
 
     names = applesState.map { it.name.split(" ").sortedBy { it.length }.last() }
 
-    Scaffold(
+    /*Scaffold(
         topBar = {
             TopAppBar(title = { Text(stringResource(id = R.string.app_name)) })
         }
-    ) {
-       Column (modifier = Modifier.padding(it)){
+    ) { */
+       Column (){
            if(applesState.isNotEmpty()) {
                ScrollableTabRow(
                    selectedTabIndex = pagerState.currentPage,
@@ -81,7 +81,7 @@ fun ApplesScreen() {
            }
        }
     }
-}
+
 
 @ExperimentalCoilApi
 @ExperimentalMaterialApi

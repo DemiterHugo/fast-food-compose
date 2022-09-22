@@ -27,28 +27,27 @@ import com.example.recipes.data.entities.Item
 @ExperimentalFoundationApi
 @Composable
 fun <T: Item>ItemsListScreen(items: List<T>, onClicked1: (id: Int) -> Unit) {
-
+/*
     Scaffold(
         topBar = {
             TopAppBar(title = { Text(stringResource(id = R.string.app_name)) })
         }
     ) {
         ItemsList(modifier = Modifier.padding(it), items, onClicked1)
-    }
+    }   */
+    ItemsList( items, onClicked1)
 }
 
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
 fun <T : Item> ItemsList(
-    modifier: Modifier = Modifier,
     items: List<T>,
     onClicked1: (id: Int) -> Unit
 ) {
     LazyVerticalGrid(
         cells = GridCells.Adaptive(200.dp),
         contentPadding = PaddingValues(10.dp),
-        modifier = modifier
     ) {
         items(items) {
             ItemList(it) { onClicked1(it.id) }

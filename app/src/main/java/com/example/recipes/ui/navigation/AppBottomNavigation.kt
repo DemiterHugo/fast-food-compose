@@ -8,9 +8,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 
 @Composable
-fun AppBottomNavigation(currentRoute: String, onNavItemClick: (NavItem)-> Unit) {
+fun AppBottomNavigation(
+    bottomNavOptions: List<NavItem>,
+    currentRoute: String,
+    onNavItemClick: (NavItem) -> Unit
+) {
     BottomNavigation {
-        NavItem.values().forEach {
+        bottomNavOptions.forEach {
             val title = stringResource(id = it.title)
             BottomNavigationItem(
                 selected = currentRoute.contains(it.navCommand.typeMenu.routeType),

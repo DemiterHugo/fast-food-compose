@@ -4,4 +4,8 @@
     <string name="burgers">Burgers</string>
     <string name="sushis">Sushis</string>
     <string name="apples">apples</string>
+    <string name="users">users</string>
+    <string name="settings">settings</string>
+    <string name="homes">homes</string>
+    <string name="home">home</string>
 </resources>

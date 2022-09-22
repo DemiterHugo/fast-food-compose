@@ -9,8 +9,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
 fun AppBarIcon(imageVector: ImageVector, onClickIcon: ()-> Unit){
-    IconButton(onClick = { onClickIcon}) {
-        Icon(imageVector = Icons.Default.Medication, contentDescription =null )
+    IconButton(onClick = { onClickIcon()}) {
+        Icon(imageVector = imageVector, contentDescription =null )
     }
 }
 
