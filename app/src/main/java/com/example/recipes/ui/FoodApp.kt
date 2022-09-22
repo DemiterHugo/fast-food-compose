@@ -30,58 +30,48 @@ import kotlinx.coroutines.launch
 @ExperimentalMaterialApi
 @Composable
 fun FoodApp(){
-    val navController = rememberNavController()
-    val navBackStackEntry by  navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route?: ""
-    val showUpNavitagion = currentRoute !in NavItem.values().map {
-        it.navCommand.route
-    }
-    val scaffoldState = rememberScaffoldState()
-    val scope = rememberCoroutineScope()
-    val drawerOptions = listOf(NavItem.HOME,NavItem.SETTINGS, NavItem.USERS)
-    val bottomNavOptions = listOf(NavItem.PIZZAS, NavItem.BURGERS, NavItem.SUSHIS, NavItem.APPLES)
+    val appState = rememberFoodAppState()
+
+
+
     
     FoodScreen{
         Scaffold(
             topBar = {
                      TopAppBar(
-
-                         title = {
-                             if(!showUpNavitagion){
-                                 Text(text = stringResource(id = R.string.app_name))
-                             }},
+                         title = { Text(text = stringResource(id = R.string.app_name)) },
                          navigationIcon ={
-                             if (showUpNavitagion){
+                             if (appState.showUpNavitagion){
                                      AppBarIcon(
-                                         imageVector = Icons.Default.ArrowBack
-                                     ) { navController.popBackStack() }
+                                         imageVector = Icons.Default.ArrowBack,
+                                         onClickIcon = { appState.onUpClick()}
+                                     )
                              }else{
                                  AppBarIcon(
                                      imageVector = Icons.Default.Menu,
-                                     onClickIcon = {scope.launch {scaffoldState.drawerState.open()}}
+                                     onClickIcon = {appState.onMenuClick()}
                                  )
                              }
                          }
                      )
             },
             bottomBar = {
-                AppBottomNavigation(bottomNavOptions = bottomNavOptions, currentRoute = currentRoute) {
-                    navController.navigatePoppingUpToStartDestination(it.navCommand.route)
-                }
+                AppBottomNavigation(
+                    bottomNavOptions = FoodAppState.BOTTOM_NAV_OPTIONS,
+                    currentRoute = appState.currentRoute,
+                    onNavItemClick = { appState.onNavItemClick(it) }
+                )
             },
             drawerContent = {
                 DrawerContent(
-                    drawerOptions = drawerOptions,
-                    onOptionClick = {
-                        navController.navigate(it.navCommand.route)
-                        scope.launch { scaffoldState.drawerState.close()}
-                    },
-                    currentRoute = currentRoute
+                    drawerOptions = FoodAppState.DRAWER_OPTIONS,
+                    onOptionClick = { appState.onDrawerOptionClick(it) },
+                    currentRoute = appState.currentRoute
                 ) },
-            scaffoldState = scaffoldState
+            scaffoldState = appState.scaffoldState
         ) {
             Box(modifier = Modifier.padding(it)){
-                Navigation(navController)
+                Navigation(appState.navController)
             }
         }
     }
