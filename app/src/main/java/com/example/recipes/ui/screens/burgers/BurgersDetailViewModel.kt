@@ -11,19 +11,22 @@ import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.repositories.BurgersRepository
 import com.example.recipes.data.repositories.PizzasRepository
 import com.example.recipes.ui.navigation.NArgs
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class BurgersDetailViewModel(savedStateHandle: SavedStateHandle): ViewModel() {
 
     private val burgerId = savedStateHandle.get<Int>(NArgs.ItemId.key) ?: 0
 
-    var state by mutableStateOf(UiState())
-        private set
+    private val _state = MutableStateFlow(UiState())
+    val state: StateFlow<UiState> = _state.asStateFlow()
 
     init {
         viewModelScope.launch {
-            state = UiState(loading = true)
-            state = UiState(burger = BurgersRepository.getBurgers().first { it.id == burgerId } )
+            _state.value = UiState(loading = true)
+            _state.value = UiState(burger = BurgersRepository.getBurgers().first { it.id == burgerId } )
         }
     }
 

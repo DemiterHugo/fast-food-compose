@@ -13,9 +13,11 @@ import com.example.recipes.ui.screens.common.ItemsListScreen
 @Composable
 fun SushisScreen(onClicked2: (id: Int) -> Unit, viewModel: SushisViewModel = viewModel()) {
 
+    val state by viewModel.state.collectAsState()
+
     ItemsListScreen(
-        loading = viewModel.state.loading,
-        items = viewModel.state.items
+        loading = state.loading,
+        items = state.items
     ) { onClicked2(it) }
 }
 
@@ -24,5 +26,7 @@ fun SushisScreen(onClicked2: (id: Int) -> Unit, viewModel: SushisViewModel = vie
 @Composable
 fun SushiDetailScreen(viewModel: SushisDetailViewModel = viewModel()) {
 
-        ItemDetailScreen(loading = viewModel.state.loading, item = viewModel.state.sushi)
+    val state by viewModel.state.collectAsState()
+
+    ItemDetailScreen(loading = state.loading, item = state.sushi)
 }

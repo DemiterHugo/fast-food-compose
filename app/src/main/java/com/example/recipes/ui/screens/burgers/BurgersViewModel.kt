@@ -9,17 +9,19 @@ import com.example.recipes.data.entities.Burger
 import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.repositories.BurgersRepository
 import com.example.recipes.data.repositories.PizzasRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class BurgersViewModel: ViewModel() {
 
-    var state by mutableStateOf(UiState())
-    private set
+    private val _state = MutableStateFlow(UiState())
+    val state: StateFlow<UiState> = _state
 
     init {
         viewModelScope.launch {
-            state = UiState(loading = true)
-            state = UiState(items = BurgersRepository.getBurgers())
+            _state.value = UiState(loading = true)
+            _state.value = UiState(items = BurgersRepository.getBurgers())
         }
     }
 

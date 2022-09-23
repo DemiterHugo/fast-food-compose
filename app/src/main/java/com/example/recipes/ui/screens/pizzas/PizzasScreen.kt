@@ -3,6 +3,8 @@ package com.example.recipes.ui.screens.pizzas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.ui.screens.common.ItemDetailScreen
@@ -14,20 +16,18 @@ import com.example.recipes.ui.screens.common.ItemsListScreen
 @Composable
 fun PizzasScreen(onClicked2: (id: Int) -> Unit, viewModel: PizzasViewModel = viewModel()) {
 
-   /* var pizzasState by rememberSaveable{ mutableStateOf(emptyList<Pizza>())}
+    val state by viewModel.state.collectAsState()
 
-    LaunchedEffect(true){
-        pizzasState = PizzasRepository.getPizzas()
-    }  */
-    ItemsListScreen(loading = viewModel.state.loading, items = viewModel.state.items) { onClicked2(it) }
+    ItemsListScreen(loading = state.loading, items = state.items) { onClicked2(it) }
 }
 
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
 @Composable
 fun PizzaDetailScreen(viewModel: PizzasDetailViewModel = viewModel()) {
-    
-    ItemDetailScreen(loading = viewModel.state.loading, item = viewModel.state.pizza)
+
+    val state by viewModel.state.collectAsState()
+    ItemDetailScreen(loading = state.loading, item = state.pizza)
 }
 
 

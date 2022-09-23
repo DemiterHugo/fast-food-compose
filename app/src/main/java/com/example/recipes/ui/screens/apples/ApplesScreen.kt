@@ -36,9 +36,10 @@ fun ApplesScreen(viewModel: ApplesViewModel = viewModel()) {
 
     val pagerState = rememberPagerState()
     var scope = rememberCoroutineScope()
+    val state by viewModel.state.collectAsState()
 
        Column (){
-           if(viewModel.state.apples.isNotEmpty()) {
+           if(state.apples.isNotEmpty()) {
                ScrollableTabRow(
                    selectedTabIndex = pagerState.currentPage,
                    edgePadding = 0.dp,
@@ -51,7 +52,7 @@ fun ApplesScreen(viewModel: ApplesViewModel = viewModel()) {
                        )
                    }
                ) {
-                   viewModel.state.names.forEachIndexed { index, name ->
+                   state.names.forEachIndexed { index, name ->
                        Tab(
                            selected = index == pagerState.currentPage,
                            onClick = { scope.launch { pagerState.animateScrollToPage(index)} },
@@ -60,8 +61,8 @@ fun ApplesScreen(viewModel: ApplesViewModel = viewModel()) {
                    }
                }
 
-               HorizontalPager(count = viewModel.state.apples.count(), state = pagerState) {
-                   ItemsListForm(apples = viewModel.state.apples, indexPage = pagerState.currentPage)
+               HorizontalPager(count = state.apples.count(), state = pagerState) {
+                   ItemsListForm(apples = state.apples, indexPage = pagerState.currentPage)
                }
            }
        }
