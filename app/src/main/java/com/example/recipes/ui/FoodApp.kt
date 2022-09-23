@@ -9,19 +9,16 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.R
-import com.example.recipes.ui.navigation.*
-import com.example.recipes.ui.screens.detailpizza.AppBarIcon
+import com.example.recipes.ui.navigation.AppBottomNavigation
+import com.example.recipes.ui.navigation.DrawerContent
+import com.example.recipes.ui.navigation.Navigation
+import com.example.recipes.ui.screens.common.AppBarIcon
 import com.example.recipes.ui.theme.RecipesTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
-import kotlinx.coroutines.launch
 
 
 @ExperimentalPagerApi

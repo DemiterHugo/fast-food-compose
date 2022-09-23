@@ -1,4 +1,4 @@
-package com.example.recipes.ui.screens.detailpizza
+package com.example.recipes.ui.screens.common
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton

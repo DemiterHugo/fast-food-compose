@@ -64,13 +64,12 @@ private fun NavGraphBuilder.PizzasNav(navController: NavController){
         route = TypeOfMenu.PIZZA.routeType
     ){
         fillComposable(NavCommand.ContentType(TypeOfMenu.PIZZA)){
-            PizzasScreen(){
+            PizzasScreen(onClicked2 = {
                 navController.navigate(NavCommand.ContentDetail(TypeOfMenu.PIZZA).putIdInDetail(it))
-            }
+            })
         }
         fillComposable(NavCommand.ContentDetail(TypeOfMenu.PIZZA)){
-            val pizzaId = it.findArg<Int>(NArgs.ItemId)
-            PizzaDetailScreen(pizzaId = pizzaId) { navController.popBackStack() }
+            PizzaDetailScreen() //{ navController.popBackStack() }
 
         }
     }
@@ -86,13 +85,12 @@ private fun NavGraphBuilder.BurgersNav(navController: NavController){
         route = TypeOfMenu.BURGER.routeType
     ){
         fillComposable(NavCommand.ContentType(TypeOfMenu.BURGER)){
-            BurgersScreen(){
+            BurgersScreen(onClicked2 = {
                 navController.navigate(NavCommand.ContentDetail(TypeOfMenu.BURGER).putIdInDetail(it))
-            }
+            })
         }
         fillComposable(NavCommand.ContentDetail(TypeOfMenu.BURGER)){
-            val burgerId = it.findArg<Int>(NArgs.ItemId)
-            BurgerDetailScreen(burgerId = burgerId) { navController.popBackStack() }
+            BurgerDetailScreen()
         }
     }
 }
@@ -107,13 +105,12 @@ private fun NavGraphBuilder.SushisNav(navController: NavController){
         route = TypeOfMenu.SUSHI.routeType
     ){
         fillComposable(NavCommand.ContentType(TypeOfMenu.SUSHI)){
-            SushisScreen(){
+            SushisScreen(onClicked2 = {
                 navController.navigate(NavCommand.ContentDetail(TypeOfMenu.SUSHI).putIdInDetail(it))
-            }
+            })
         }
         fillComposable(NavCommand.ContentDetail(TypeOfMenu.SUSHI)){
-            val sushiId = it.findArg<Int>(NArgs.ItemId)
-            SushiDetailScreen(sushiId = sushiId) { navController.popBackStack() }
+            SushiDetailScreen()
         }
     }
 }

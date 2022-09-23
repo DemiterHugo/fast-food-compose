@@ -1,6 +1,5 @@
 package com.example.recipes.ui.screens.apples
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,11 +15,10 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.example.recipes.R
 import com.example.recipes.data.entities.Apple
 import com.example.recipes.data.repositories.ApplesRepository
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -34,26 +32,13 @@ import kotlinx.coroutines.launch
 @ExperimentalCoilApi
 @ExperimentalMaterialApi
 @Composable
-fun ApplesScreen() {
+fun ApplesScreen(viewModel: ApplesViewModel = viewModel()) {
 
-    var applesState by rememberSaveable{ mutableStateOf(emptyList<Apple>())}
-    var names by rememberSaveable{ mutableStateOf(emptyList<String>()) }
     val pagerState = rememberPagerState()
     var scope = rememberCoroutineScope()
 
-    LaunchedEffect(true){
-        applesState = ApplesRepository.getApples()
-    }
-
-    names = applesState.map { it.name.split(" ").sortedBy { it.length }.last() }
-
-    /*Scaffold(
-        topBar = {
-            TopAppBar(title = { Text(stringResource(id = R.string.app_name)) })
-        }
-    ) { */
        Column (){
-           if(applesState.isNotEmpty()) {
+           if(viewModel.state.apples.isNotEmpty()) {
                ScrollableTabRow(
                    selectedTabIndex = pagerState.currentPage,
                    edgePadding = 0.dp,
@@ -66,7 +51,7 @@ fun ApplesScreen() {
                        )
                    }
                ) {
-                   names.forEachIndexed { index, name ->
+                   viewModel.state.names.forEachIndexed { index, name ->
                        Tab(
                            selected = index == pagerState.currentPage,
                            onClick = { scope.launch { pagerState.animateScrollToPage(index)} },
@@ -75,8 +60,8 @@ fun ApplesScreen() {
                    }
                }
 
-               HorizontalPager(count = applesState.count(), state = pagerState) {
-                   ItemsListForm(apples = applesState, indexPage = pagerState.currentPage)
+               HorizontalPager(count = viewModel.state.apples.count(), state = pagerState) {
+                   ItemsListForm(apples = viewModel.state.apples, indexPage = pagerState.currentPage)
                }
            }
        }
@@ -129,22 +114,4 @@ val apple = apples[indexPage]
             }
         }
     }
-}
-
-@Composable
-private fun TitleRecycler(
-    apples: List<Apple>,
-    modifier: Modifier
-) {
-    Text(
-        text = apples.firstOrNull()?.name ?: "Apple recipe",
-        modifier.padding(10.dp, 20.dp),
-        style = MaterialTheme.typography.h5.copy(
-            shadow = Shadow(
-                offset = Offset(5f, 5f),
-                blurRadius = 5f,
-                color = Color.Green.copy(alpha = 0.2f)
-            )
-        )
-    )
 }

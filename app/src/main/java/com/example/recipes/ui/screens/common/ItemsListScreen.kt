@@ -2,18 +2,13 @@ package com.example.recipes.ui.screens.common
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Card
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -26,33 +21,22 @@ import com.example.recipes.data.entities.Item
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun <T: Item>ItemsListScreen(items: List<T>, onClicked1: (id: Int) -> Unit) {
-/*
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text(stringResource(id = R.string.app_name)) })
-        }
-    ) {
-        ItemsList(modifier = Modifier.padding(it), items, onClicked1)
-    }   */
-    ItemsList( items, onClicked1)
-}
+fun <T: Item>ItemsListScreen(loading: Boolean = false, items: List<T>, onClicked1: (id: Int) -> Unit) {
 
-@ExperimentalCoilApi
-@ExperimentalFoundationApi
-@Composable
-fun <T : Item> ItemsList(
-    items: List<T>,
-    onClicked1: (id: Int) -> Unit
-) {
-    LazyVerticalGrid(
-        cells = GridCells.Adaptive(200.dp),
-        contentPadding = PaddingValues(10.dp),
-    ) {
-        items(items) {
-            ItemList(it) { onClicked1(it.id) }
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        if (loading) {
+            CircularProgressIndicator()
+        }
+        LazyVerticalGrid(
+            cells = GridCells.Adaptive(200.dp),
+            contentPadding = PaddingValues(10.dp),
+        ) {
+            items(items) {
+                ItemList(it) { onClicked1(it.id) }
+            }
         }
     }
+
 }
 
 @ExperimentalCoilApi

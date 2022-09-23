@@ -8,16 +8,13 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.Medication
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ShareCompat
 import com.example.recipes.data.entities.Item
-import com.example.recipes.data.entities.Pizza
-import com.example.recipes.ui.navigation.ArrowBackIcon
+import com.example.recipes.ui.screens.common.AppBarIcon
 
 @ExperimentalMaterialApi
 @Composable

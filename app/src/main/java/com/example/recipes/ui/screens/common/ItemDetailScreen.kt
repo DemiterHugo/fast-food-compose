@@ -1,4 +1,4 @@
-package com.example.recipes.ui.screens.detailpizza
+package com.example.recipes.ui.screens.common
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,21 +15,31 @@ import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.data.entities.Item
 import com.example.recipes.ui.screens.common.Thumb
+import com.example.recipes.ui.screens.detailpizza.ItemDetailScaffold
 
 
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
 @Composable
-fun ItemDetailScreen(item: Item, onArrowClick: ()-> Unit) {
+fun ItemDetailScreen(loading: Boolean = false, item: Item?) {
 
-ItemDetailScaffold(item = item){
-        LazyColumn(modifier = Modifier.fillMaxWidth().padding(it)){
-            item {
-                Header(item)
+    if (loading){
+        CircularProgressIndicator()
+    }
+    if (item != null){
+        ItemDetailScaffold(item = item){
+            LazyColumn(modifier = Modifier
+                .fillMaxWidth()
+                .padding(it)){
+                item {
+                    Header(item)
+                }
+                infoNutrients("Nutrients",item)
             }
-            infoNutrients("Nutrients",item)
         }
     }
+
+
 }
 
 @ExperimentalMaterialApi
