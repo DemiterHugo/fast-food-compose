@@ -5,8 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.right
 import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.entities.Sushi
+import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.repositories.PizzasRepository
 import com.example.recipes.data.repositories.SushisRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,5 +30,8 @@ class SushisViewModel: ViewModel() {
         }
     }
 
-    data class UiState(val loading: Boolean = false, val items: List<Sushi> = emptyList())
+    data class UiState(
+        val loading: Boolean = false,
+        val items: Ei<List<Sushi>> = emptyList<Sushi>().right()
+    )
 }

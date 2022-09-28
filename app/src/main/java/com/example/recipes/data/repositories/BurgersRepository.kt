@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.recipes.BuildConfig
 import com.example.recipes.data.entities.Burger
 import com.example.recipes.data.network.ApiClient
+import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.network.entities.pizzas.ApiBugers
 import com.example.recipes.data.network.entities.pizzas.ApiMenu
 
@@ -11,11 +12,26 @@ object BurgersRepository: Repository<Burger>() {
 
     private val apiKey = BuildConfig.API_KEY
 
-    suspend fun getBurgers(): List<Burger> = super.get{
-        ApiClient.burgersService.getBurgers(apiKey,"burger",true)
-        .menuItems.map {
-            it.asBurger()
-        }
+    suspend fun getBurgers(): Ei<List<Burger>> {
+        return super.get(getAction = {
+            ApiClient.burgersService.getBurgers(apiKey, "burger", true)
+                .menuItems.map {
+                    it.asBurger()
+                }
+        })
+    }
+
+    suspend fun findBurgerById(id: Int): Ei<Burger>{
+        return super.findById(
+            id,
+            actionRemote ={
+                ApiClient.burgersService.getBurgers(apiKey, "burger", true)
+                    .menuItems.map {
+                        it.asBurger()
+                    }.first{it.id == id}
+            }
+
+        )
     }
 }
 

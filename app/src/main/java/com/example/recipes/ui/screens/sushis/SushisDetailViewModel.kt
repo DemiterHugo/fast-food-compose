@@ -6,7 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.Either
 import com.example.recipes.data.entities.Sushi
+import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.repositories.SushisRepository
 import com.example.recipes.ui.navigation.NArgs
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,9 +26,12 @@ class SushisDetailViewModel(savedStateHandle: SavedStateHandle): ViewModel() {
     init {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(sushi = SushisRepository.getSushis().first { it.id == sushiId } )
+            _state.value = UiState(sushi = SushisRepository.findSushiById(sushiId))
         }
     }
 
-    data class UiState(val loading: Boolean = false, val sushi: Sushi? = null)
+    data class UiState(
+        val loading: Boolean = false,
+        val sushi: Ei<Sushi?> = Either.Right(null)
+    )
 }

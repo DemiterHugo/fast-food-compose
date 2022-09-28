@@ -1,15 +1,30 @@
 package com.example.recipes.data.repositories
 
 import com.example.recipes.data.entities.Item
+import com.example.recipes.data.network.entities.Ei
+import com.example.recipes.data.network.entities.tryCall
+import kotlinx.coroutines.withTimeout
 
 abstract class Repository<T: Item> {
 
     private var cache: List<T> = emptyList()
 
-    internal suspend fun get(getAction: suspend ()-> List<T>): List<T>{
-        if(cache.isEmpty()){
-            cache = getAction()
+    internal suspend fun get(getAction: suspend () -> List<T>): Ei<List<T>> {
+        return tryCall(action = {
+            if (cache.isEmpty()) {
+                //withTimeout(500){}
+                    cache = getAction()
+            }
+            cache
+        })
+    }
+
+    internal suspend fun findById(id:Int, actionRemote: suspend ()-> T): Ei<T>{
+        return tryCall {
+            val item = cache.find{
+                it.id == id
+            }
+            item ?: actionRemote()
         }
-        return  cache
     }
 }

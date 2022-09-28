@@ -78,6 +78,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
     //despizar tab
     implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
-
+    //modelar errores con either
+    implementation  "io.arrow-kt:arrow-core:1.0.1"
 
 }

@@ -17,25 +17,29 @@ import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.R
 import com.example.recipes.data.entities.Item
+import com.example.recipes.data.network.entities.Ei
 
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun <T: Item>ItemsListScreen(loading: Boolean = false, items: List<T>, onClicked1: (id: Int) -> Unit) {
+fun <T: Item>ItemsListScreen(loading: Boolean = false, items: Ei<List<T>>, onClicked1: (id: Int) -> Unit) {
 
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        if (loading) {
-            CircularProgressIndicator()
-        }
-        LazyVerticalGrid(
-            cells = GridCells.Adaptive(200.dp),
-            contentPadding = PaddingValues(10.dp),
-        ) {
-            items(items) {
-                ItemList(it) { onClicked1(it.id) }
+    items.fold({ ErrorMessage(typeError = it)}){
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            if (loading) {
+                CircularProgressIndicator()
+            }
+            LazyVerticalGrid(
+                cells = GridCells.Adaptive(200.dp),
+                contentPadding = PaddingValues(10.dp),
+            ) {
+                items(it) {
+                    ItemList(it) { onClicked1(it.id) }
+                }
             }
         }
     }
+
 
 }
 

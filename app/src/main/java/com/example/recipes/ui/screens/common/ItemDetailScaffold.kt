@@ -11,10 +11,12 @@ import androidx.compose.material.icons.filled.Medication
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ShareCompat
 import com.example.recipes.data.entities.Item
 import com.example.recipes.ui.screens.common.AppBarIcon
+import com.example.recipes.ui.theme.Yelow700Demi
 
 @ExperimentalMaterialApi
 @Composable
@@ -22,8 +24,11 @@ fun ItemDetailScaffold(item: Item, content: @Composable (PaddingValues) -> Unit)
 
     val context = LocalContext.current
     Scaffold(
+
         topBar = {
             TopAppBar(
+                backgroundColor = Yelow700Demi,
+                contentColor = Color.Black,
                 title = { Text(text = item.title.substringAfter(" ")) },
                 //navigationIcon = { ArrowBackIcon { onArrowClick() }},
                 actions = {
@@ -33,7 +38,10 @@ fun ItemDetailScaffold(item: Item, content: @Composable (PaddingValues) -> Unit)
         },
         floatingActionButton = {
             if (item.image.isNotBlank()) {
-                FloatingActionButton(onClick = { sharePizza(context = context, item = item) }) {
+                FloatingActionButton(
+                    onClick = { sharePizza(context = context, item = item) },
+                    shape = MaterialTheme.shapes.small
+                ) {
                     Icon(imageVector = Icons.Default.Share, contentDescription = null)
                 }
             }
@@ -41,7 +49,10 @@ fun ItemDetailScaffold(item: Item, content: @Composable (PaddingValues) -> Unit)
         floatingActionButtonPosition = FabPosition.Center,
         isFloatingActionButtonDocked = true,
         bottomBar ={
-              BottomAppBar(cutoutShape = CircleShape) {
+              BottomAppBar(
+                  backgroundColor = Yelow700Demi,
+                  cutoutShape = MaterialTheme.shapes.small
+              ) {
 
                   AppBarIcon(imageVector = Icons.Default.Medication, onClickIcon = {/* TODO */})
                   Spacer(modifier = Modifier.weight(1f))

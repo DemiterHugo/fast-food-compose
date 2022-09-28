@@ -14,6 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.data.entities.Item
+import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.ui.screens.common.Thumb
 import com.example.recipes.ui.screens.detailpizza.ItemDetailScaffold
 
@@ -21,23 +22,27 @@ import com.example.recipes.ui.screens.detailpizza.ItemDetailScaffold
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
 @Composable
-fun ItemDetailScreen(loading: Boolean = false, item: Item?) {
+fun ItemDetailScreen(loading: Boolean = false, item: Ei<Item?>) {
 
     if (loading){
         CircularProgressIndicator()
     }
-    if (item != null){
-        ItemDetailScaffold(item = item){
-            LazyColumn(modifier = Modifier
-                .fillMaxWidth()
-                .padding(it)){
-                item {
-                    Header(item)
+
+    item.fold({ErrorMessage(it)}){ item ->
+        if (item != null){
+            ItemDetailScaffold(item = item){
+                LazyColumn(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(it)){
+                    item {
+                        Header(item)
+                    }
+                    infoNutrients("Nutrients",item)
                 }
-                infoNutrients("Nutrients",item)
             }
         }
     }
+
 
 
 }

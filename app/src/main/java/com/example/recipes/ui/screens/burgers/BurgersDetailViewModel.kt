@@ -6,8 +6,11 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import arrow.core.Either
+import arrow.core.right
 import com.example.recipes.data.entities.Burger
 import com.example.recipes.data.entities.Pizza
+import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.repositories.BurgersRepository
 import com.example.recipes.data.repositories.PizzasRepository
 import com.example.recipes.ui.navigation.NArgs
@@ -26,9 +29,12 @@ class BurgersDetailViewModel(savedStateHandle: SavedStateHandle): ViewModel() {
     init {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(burger = BurgersRepository.getBurgers().first { it.id == burgerId } )
+            _state.value = UiState(burger = BurgersRepository.findBurgerById(burgerId) )
         }
     }
 
-    data class UiState(val loading: Boolean = false, val burger: Burger? = null){}
+    data class UiState(
+        val loading: Boolean = false,
+        val burger: Ei<Burger?> = Either.Right(null)
+    ){}
 }

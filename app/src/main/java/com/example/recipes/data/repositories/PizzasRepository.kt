@@ -1,22 +1,29 @@
 package com.example.recipes.data.repositories
 
-import android.os.Parcelable
 import com.example.recipes.BuildConfig
 import com.example.recipes.data.entities.Nutrition
 import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.network.ApiClient
+import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.network.entities.pizzas.*
 import com.example.recipes.data.network.entities.pizzas.ApiPizzas
-import kotlinx.parcelize.Parcelize
 
 object PizzasRepository: Repository<Pizza>() {
 
     private val apiKey = BuildConfig.API_KEY
 
-    suspend fun getPizzas(): List<Pizza> = super.get{
+    suspend fun getPizzas(): Ei<List<Pizza>> = super.get{
          ApiClient.pizzasService.getPizzas(apiKey,"pizza",true).menuItems.map {
             it.asPizza()
         }
+    }
+
+    suspend fun findPizzaById(id: Int): Ei<Pizza>{
+        return super.findById(id, actionRemote = {
+            ApiClient.pizzasService.getPizzas(apiKey,"pizza",true).menuItems.map {
+                it.asPizza()
+            }.first{it.id == id}
+        })
     }
 }
 

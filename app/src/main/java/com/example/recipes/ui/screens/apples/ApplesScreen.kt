@@ -21,6 +21,10 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.recipes.data.entities.Apple
 import com.example.recipes.data.repositories.ApplesRepository
+import com.example.recipes.ui.screens.common.ErrorMessage
+import com.example.recipes.ui.theme.Teal200Demi
+import com.example.recipes.ui.theme.Yelow200Demi
+import com.example.recipes.ui.theme.Yelow700Demi
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
@@ -41,6 +45,7 @@ fun ApplesScreen(viewModel: ApplesViewModel = viewModel()) {
        Column (){
            if(state.apples.isNotEmpty()) {
                ScrollableTabRow(
+                   backgroundColor = Yelow700Demi,
                    selectedTabIndex = pagerState.currentPage,
                    edgePadding = 0.dp,
                    indicator = { tabPositions ->
@@ -48,22 +53,27 @@ fun ApplesScreen(viewModel: ApplesViewModel = viewModel()) {
                            Modifier.pagerTabIndicatorOffset(
                                pagerState,
                                tabPositions
-                           )
+                           ),
+                           color = Teal200Demi
                        )
                    }
                ) {
-                   state.names.forEachIndexed { index, name ->
-                       Tab(
-                           selected = index == pagerState.currentPage,
-                           onClick = { scope.launch { pagerState.animateScrollToPage(index)} },
-                           text = { Text(text = name) }
-                       )
+                   state.names.fold({ ErrorMessage(typeError = it) }){
+                       it.forEachIndexed { index, name ->
+                           Tab(
+                               selected = index == pagerState.currentPage,
+                               onClick = { scope.launch { pagerState.animateScrollToPage(index)} },
+                               text = { Text(text = name) }
+                           )
+                       }
                    }
                }
+                state.apples.fold({ ErrorMessage(typeError = it)}){ apples ->
+                    HorizontalPager(count = apples.count(), state = pagerState) {
+                        ItemsListForm(apples = apples, indexPage = pagerState.currentPage)
+                    }
+                }
 
-               HorizontalPager(count = state.apples.count(), state = pagerState) {
-                   ItemsListForm(apples = state.apples, indexPage = pagerState.currentPage)
-               }
            }
        }
     }
@@ -86,7 +96,7 @@ val apple = apples[indexPage]
                     Card {
                         Column {
                             ListItem(
-                                modifier.background(Color.Green.copy(alpha = 0.2f)),
+                                modifier.background(color = Yelow200Demi),
                                 icon = {
                                     Icon(
                                         imageVector = Icons.Filled.Agriculture,
