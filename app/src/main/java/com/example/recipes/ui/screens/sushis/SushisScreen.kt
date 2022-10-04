@@ -8,6 +8,7 @@ import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.ui.screens.common.ItemDetailScreen
 import com.example.recipes.ui.screens.common.ItemsListScreen
 
+@ExperimentalMaterialApi
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable

@@ -10,6 +10,7 @@ import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.ui.screens.common.ItemDetailScreen
 import com.example.recipes.ui.screens.common.ItemsListScreen
 
+@ExperimentalMaterialApi
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
@@ -19,8 +20,9 @@ fun BurgersScreen(onClicked2: (id: Int) -> Unit, viewModel: BurgersViewModel = v
 
     ItemsListScreen(
         loading = state.loading,
-        items = state.items
-    ) { onClicked2(it) }
+        items = state.items,
+        onClicked1 =  { onClicked2(it) }
+    )
 }
 
 @ExperimentalMaterialApi

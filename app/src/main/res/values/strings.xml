@@ -8,4 +8,5 @@
     <string name="settings">settings</string>
     <string name="homes">homes</string>
     <string name="home">home</string>
+    <string name="go_to_detail">Go to detail</string>
 </resources>
