@@ -80,5 +80,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
     //modelar errores con either
     implementation  "io.arrow-kt:arrow-core:1.0.1"
+    //test de UI
+    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
 
 }
