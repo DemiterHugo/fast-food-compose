@@ -16,6 +16,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -25,6 +26,8 @@ import com.example.recipes.R
 import com.example.recipes.data.entities.Item
 import com.example.recipes.data.network.entities.Ei
 import kotlinx.coroutines.launch
+
+const val ITEM_CLICK = "ItemClick"
 
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
@@ -74,7 +77,7 @@ fun <T: Item>ItemsListScreen(
                                 bottomSheetItem = item
                                 scope.launch { sheetState.show() }
                                          },
-                            modifier = Modifier.clickable{ onClicked1(it.id) }
+                            modifier = Modifier.clickable{ onClicked1(it.id) }.testTag(it.title)
                         )
                     }
                 }
@@ -112,7 +115,9 @@ fun <T: Item>ItemList(
                     modifier = Modifier.weight(1f)
                 )
                 IconButton(onClick = { onItemMore(item) }) {
-                    Icon(imageVector = Icons.Default.MoreVert, contentDescription = null)
+                    Icon(imageVector = Icons.Default.MoreVert, contentDescription = stringResource(
+                        id = R.string.more_options
+                    ))
                 }
             }
         }

@@ -7,20 +7,22 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.example.recipes.R
 import com.example.recipes.data.entities.Item
 import com.example.recipes.data.entities.Pizza
 
 @ExperimentalCoilApi
 @Composable
-fun Thumb(item: Item, modifier: Modifier = Modifier) {
+fun Thumb(item: Item, modifier: Modifier = Modifier, ratio: Float = 1f) {
     Image(
         painter = rememberImagePainter(item.image),
-        contentDescription = null,
+        contentDescription = stringResource(id = R.string.image),
         contentScale = ContentScale.Crop,
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(1f)
+            .aspectRatio(ratio)
     )
 }

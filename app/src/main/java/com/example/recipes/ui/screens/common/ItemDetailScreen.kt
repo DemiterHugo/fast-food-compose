@@ -67,7 +67,7 @@ fun LazyListScope.infoNutrients(tite: String, item: Item){
 @Composable
 fun Header(item: Item) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        Thumb(item = item)
+        Thumb(item = item, ratio = 1.5f)
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = item.title,
