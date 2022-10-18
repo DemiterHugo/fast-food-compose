@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class ApplesViewModel: ViewModel() {
+class ApplesViewModel(private val applesRepository: ApplesRepository): ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state
@@ -22,8 +22,8 @@ class ApplesViewModel: ViewModel() {
     init {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(apples = ApplesRepository.getApples())
-            _state.value = UiState(apples = ApplesRepository.getApples(),names = ApplesRepository.getNames())
+            _state.value = UiState(apples = applesRepository.getApples())
+            _state.value = UiState(apples = applesRepository.getApples(),names = applesRepository.getNames())
         }
     }
 

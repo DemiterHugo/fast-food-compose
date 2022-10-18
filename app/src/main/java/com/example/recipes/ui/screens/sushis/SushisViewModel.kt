@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class SushisViewModel: ViewModel() {
+class SushisViewModel(private val sushisRepository: SushisRepository): ViewModel() {
 
     private var _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
@@ -26,7 +26,7 @@ class SushisViewModel: ViewModel() {
     init {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(items = SushisRepository.getSushis())
+            _state.value = UiState(items = sushisRepository.getSushis())
         }
     }
 

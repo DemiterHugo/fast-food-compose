@@ -4,23 +4,32 @@ import com.example.recipes.BuildConfig
 import com.example.recipes.data.entities.Nutrition
 import com.example.recipes.data.entities.Pizza
 import com.example.recipes.data.network.ApiClient
+import com.example.recipes.data.network.PizzasService
 import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.network.entities.pizzas.*
 import com.example.recipes.data.network.entities.pizzas.ApiPizzas
 
-object PizzasRepository: Repository<Pizza>() {
+class PizzasRepository(private val pizzasService: PizzasService): Repository<Pizza>() {
 
     private val apiKey = BuildConfig.API_KEY
 
     suspend fun getPizzas(): Ei<List<Pizza>> = super.get{
-         ApiClient.pizzasService.getPizzas(apiKey,"pizza",true).menuItems.map {
+        pizzasService.getPizzas(
+            apiKey = apiKey,
+            query = "pizza",
+            addMenuItemInformation = true
+        ).menuItems.map {
             it.asPizza()
         }
     }
 
     suspend fun findPizzaById(id: Int): Ei<Pizza>{
         return super.findById(id, actionRemote = {
-            ApiClient.pizzasService.getPizzas(apiKey,"pizza",true).menuItems.map {
+            pizzasService.getPizzas(
+                apiKey = apiKey,
+                query = "pizza",
+                addMenuItemInformation = true
+            ).menuItems.map {
                 it.asPizza()
             }.first{it.id == id}
         })

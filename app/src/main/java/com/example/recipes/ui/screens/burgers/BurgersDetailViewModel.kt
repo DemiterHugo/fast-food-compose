@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class BurgersDetailViewModel(savedStateHandle: SavedStateHandle): ViewModel() {
+class BurgersDetailViewModel(savedStateHandle: SavedStateHandle, burgersRepository: BurgersRepository): ViewModel() {
 
     private val burgerId = savedStateHandle.get<Int>(NArgs.ItemId.key) ?: 0
 
@@ -29,7 +29,7 @@ class BurgersDetailViewModel(savedStateHandle: SavedStateHandle): ViewModel() {
     init {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(burger = BurgersRepository.findBurgerById(burgerId) )
+            _state.value = UiState(burger = burgersRepository.findBurgerById(burgerId) )
         }
     }
 

@@ -15,6 +15,7 @@ import com.example.recipes.ui.FoodApp
 import com.example.recipes.ui.navigation.Navigation
 import com.example.recipes.ui.theme.RecipesTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
+import dagger.hilt.android.AndroidEntryPoint
 
 // https://spoonacular.com/food-api/docs
 // https://api.spoonacular.com/food/menuItems/search?apiKey=e0f3a3ad35ec41db8968e226fa3c06b5&query=sushi&number=2
@@ -23,6 +24,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 @ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @ExperimentalCoilApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
 

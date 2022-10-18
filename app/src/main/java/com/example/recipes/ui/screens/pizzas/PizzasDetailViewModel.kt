@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class PizzasDetailViewModel(savedStateHandle: SavedStateHandle): ViewModel() {
+class PizzasDetailViewModel(savedStateHandle: SavedStateHandle, private val pizzasRepository: PizzasRepository): ViewModel() {
 
     private val pizzaId = savedStateHandle.get<Int>(NArgs.ItemId.key) ?: 0
 
@@ -26,7 +26,7 @@ class PizzasDetailViewModel(savedStateHandle: SavedStateHandle): ViewModel() {
     init {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(pizza = PizzasRepository.findPizzaById(pizzaId))
+            _state.value = UiState(pizza = pizzasRepository.findPizzaById(pizzaId))
         }
     }
 

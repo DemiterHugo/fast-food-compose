@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class PizzasViewModel: ViewModel() {
+class PizzasViewModel(private val pizzasRepository: PizzasRepository): ViewModel() {
 
     /*var state by mutableStateOf(UiState())
     private set*/
@@ -25,7 +25,7 @@ class PizzasViewModel: ViewModel() {
     init {
         viewModelScope.launch {
             _state.value = UiState(loading = true)
-            _state.value = UiState(items = PizzasRepository.getPizzas())
+            _state.value = UiState(items = pizzasRepository.getPizzas())
         }
     }
 

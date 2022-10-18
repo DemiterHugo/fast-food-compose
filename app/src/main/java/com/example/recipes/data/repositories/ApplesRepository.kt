@@ -4,12 +4,13 @@ import com.example.recipes.BuildConfig
 import com.example.recipes.data.entities.Apple
 import com.example.recipes.data.entities.Result
 import com.example.recipes.data.network.ApiClient
+import com.example.recipes.data.network.ApplesService
 import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.network.entities.apple.ApiResult
 import com.example.recipes.data.network.entities.apple.SearchResult
 import com.example.recipes.data.network.entities.tryCall
 
-object ApplesRepository{
+class ApplesRepository(private val applesService: ApplesService) {
 
     private val apiKey = BuildConfig.API_KEY
     private var cache: List<Apple> = emptyList()
@@ -17,10 +18,10 @@ object ApplesRepository{
 
     suspend fun getApples(): Ei<List<Apple>> {
 
-        return tryCall( action =  {
+        return tryCall(action = {
             if (cache.isEmpty()) {
-                cache = ApiClient
-                    .applesService
+                cache =
+                        applesService
                     .getApples(apiKey, "apple", 4)
                     .searchResults.map {
                         it.asApple()
@@ -31,9 +32,9 @@ object ApplesRepository{
 
     }
 
-    suspend fun getNames(): Ei<List<String>>{
-        return tryCall( action = {
-            if (cacheNames.isEmpty()){
+    suspend fun getNames(): Ei<List<String>> {
+        return tryCall(action = {
+            if (cacheNames.isEmpty()) {
                 cacheNames = ApiClient
                     .applesService
                     .getApples(apiKey, "apple", 4)
