@@ -1,6 +1,9 @@
-package com.example.recipes.data.entities
+package com.example.recipes.data.database
+
+import androidx.room.Entity
 
 
+//@Entity
 data class Result(
     val content: String?,
     val id: Int,

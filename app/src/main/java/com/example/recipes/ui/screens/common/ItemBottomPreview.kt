@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.recipes.R
-import com.example.recipes.data.entities.Item
+import com.example.recipes.data.database.Item
 import com.example.recipes.ui.theme.Yelow700Demi
 
 

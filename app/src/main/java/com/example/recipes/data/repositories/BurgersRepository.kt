@@ -2,21 +2,20 @@ package com.example.recipes.data.repositories
 
 import android.util.Log
 import com.example.recipes.BuildConfig
-import com.example.recipes.data.entities.Burger
-import com.example.recipes.data.network.ApiClient
+import com.example.recipes.data.database.Burger
 import com.example.recipes.data.network.BurgersService
 import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.network.entities.pizzas.ApiBugers
 import com.example.recipes.data.network.entities.pizzas.ApiMenu
+import javax.inject.Inject
 
-class BurgersRepository(private val burgersService: BurgersService) : Repository<Burger>() {
+class BurgersRepository @Inject constructor(private val burgersService: BurgersService) : Repository<Burger>() {
 
     private val apiKey = BuildConfig.API_KEY
 
     suspend fun getBurgers(): Ei<List<Burger>> {
         return super.get(getAction = {
             burgersService.getBurgers(
-                apiKey = apiKey,
                 query = "burger",
                 addMenuItemInformation = true
             )
@@ -30,12 +29,14 @@ class BurgersRepository(private val burgersService: BurgersService) : Repository
         return super.findById(
             id,
             actionRemote = {
-                burgersService.getBurgers(apiKey, "burger", true)
+                burgersService.getBurgers(
+                    query = "burger",
+                    addMenuItemInformation = true
+                )
                     .menuItems.map {
                         it.asBurger()
                     }.first { it.id == id }
             }
-
         )
     }
 }

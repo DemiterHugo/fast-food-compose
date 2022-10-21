@@ -8,7 +8,7 @@ interface ApplesService {
 
     @GET("/food/search?")
     suspend fun getApples(
-        @Query("apiKey") apiKey: String,
+       // @Query("apiKey") apiKey: String,
         @Query("query") query: String,
         @Query("number") number: Int
     ): AppleResponse

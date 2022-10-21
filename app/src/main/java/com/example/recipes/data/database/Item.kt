@@ -1,4 +1,4 @@
-package com.example.recipes.data.entities
+package com.example.recipes.data.database
 
 interface Item {
     val id: Int

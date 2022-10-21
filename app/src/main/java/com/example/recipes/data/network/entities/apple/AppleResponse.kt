@@ -1,10 +1,10 @@
 package com.example.recipes.data.network.entities.apple
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+//import kotlinx.parcelize.Parcelize
 
 
-@Parcelize
+//@Parcelize
 data class AppleResponse(
     val activeFilterOptions: List<String>,
     val expires: Long,
@@ -16,4 +16,4 @@ data class AppleResponse(
     val searchResults: List<SearchResult>,
     val sorting: String,
     val totalResults: Int
-): Parcelable
+) //: Parcelable

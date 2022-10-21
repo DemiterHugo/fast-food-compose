@@ -1,21 +1,21 @@
 package com.example.recipes.data.repositories
 
-import com.example.recipes.BuildConfig
-import com.example.recipes.data.entities.Nutrition
-import com.example.recipes.data.entities.Pizza
-import com.example.recipes.data.network.ApiClient
+import com.example.recipes.data.database.CaloricBreakdown
+import com.example.recipes.data.database.Nutrient
+import com.example.recipes.data.database.Nutrition
+import com.example.recipes.data.database.Pizza
 import com.example.recipes.data.network.PizzasService
 import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.network.entities.pizzas.*
-import com.example.recipes.data.network.entities.pizzas.ApiPizzas
+import javax.inject.Inject
 
-class PizzasRepository(private val pizzasService: PizzasService): Repository<Pizza>() {
+class PizzasRepository @Inject constructor(private val pizzasService: PizzasService): Repository<Pizza>() {
 
-    private val apiKey = BuildConfig.API_KEY
+    //private val apiKey = BuildConfig.API_KEY
 
     suspend fun getPizzas(): Ei<List<Pizza>> = super.get{
         pizzasService.getPizzas(
-            apiKey = apiKey,
+            //apiKey = apiKey,
             query = "pizza",
             addMenuItemInformation = true
         ).menuItems.map {
@@ -26,7 +26,7 @@ class PizzasRepository(private val pizzasService: PizzasService): Repository<Piz
     suspend fun findPizzaById(id: Int): Ei<Pizza>{
         return super.findById(id, actionRemote = {
             pizzasService.getPizzas(
-                apiKey = apiKey,
+               // apiKey = apiKey,
                 query = "pizza",
                 addMenuItemInformation = true
             ).menuItems.map {
@@ -74,7 +74,7 @@ fun ApiNutrient.asNutrient(): Nutrient{
 
 
 
-fun ApiCaloricBreakdown.asCaloricBreackdown(): CaloricBreakdown{
+fun ApiCaloricBreakdown.asCaloricBreackdown(): CaloricBreakdown {
     return CaloricBreakdown(
         percentCarbs = percentCarbs,
         percentFat = percentFat,

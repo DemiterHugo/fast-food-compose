@@ -5,6 +5,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.ui.screens.common.ItemDetailScreen
@@ -14,7 +15,7 @@ import com.example.recipes.ui.screens.common.ItemsListScreen
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun BurgersScreen(onClicked2: (id: Int) -> Unit, viewModel: BurgersViewModel = viewModel()) {
+fun BurgersScreen(onClicked2: (id: Int) -> Unit, viewModel: BurgersViewModel = hiltViewModel()) {
 
    val state by viewModel.state.collectAsState()
 
@@ -28,7 +29,7 @@ fun BurgersScreen(onClicked2: (id: Int) -> Unit, viewModel: BurgersViewModel = v
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
 @Composable
-fun BurgerDetailScreen(viewModel: BurgersDetailViewModel = viewModel()) {
+fun BurgerDetailScreen(viewModel: BurgersDetailViewModel = hiltViewModel()) {
 
     val state by viewModel.state.collectAsState()
 

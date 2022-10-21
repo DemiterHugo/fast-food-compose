@@ -9,18 +9,13 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Agriculture
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.example.recipes.data.entities.Apple
-import com.example.recipes.data.repositories.ApplesRepository
+import com.example.recipes.data.database.Apple
 import com.example.recipes.ui.screens.common.ErrorMessage
 import com.example.recipes.ui.theme.Teal200Demi
 import com.example.recipes.ui.theme.Yelow200Demi
@@ -36,10 +31,10 @@ import kotlinx.coroutines.launch
 @ExperimentalCoilApi
 @ExperimentalMaterialApi
 @Composable
-fun ApplesScreen(viewModel: ApplesViewModel = viewModel()) {
+fun ApplesScreen(viewModel: ApplesViewModel = hiltViewModel()) {
 
     val pagerState = rememberPagerState()
-    var scope = rememberCoroutineScope()
+    val scope = rememberCoroutineScope()
     val state by viewModel.state.collectAsState()
 
        Column (){

@@ -5,7 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalUriHandler
-import com.example.recipes.data.entities.Item
+import com.example.recipes.data.database.Item
 
 @ExperimentalMaterialApi
 @Composable

@@ -1,9 +1,12 @@
-package com.example.recipes.data.entities
+package com.example.recipes.data.database
 
-import java.net.IDN
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+
 
 data class Sushi(
-    override val id: Int,
+    @PrimaryKey(autoGenerate = true) override val id: Int,
     override val price: String,
     override val title: String,
     override val image: String,

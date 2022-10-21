@@ -1,6 +1,5 @@
 package com.example.recipes.ui.screens.common
 
-import android.service.controls.templates.ThumbnailTemplate
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,8 +10,7 @@ import androidx.compose.ui.res.stringResource
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.recipes.R
-import com.example.recipes.data.entities.Item
-import com.example.recipes.data.entities.Pizza
+import com.example.recipes.data.database.Item
 
 @ExperimentalCoilApi
 @Composable

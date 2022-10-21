@@ -2,9 +2,9 @@ package com.example.recipes.data.network.entities.pizzas
 
 import android.os.Parcelable
 import com.example.recipes.data.network.entities.pizzas.ApiNutrition
-import kotlinx.parcelize.Parcelize
+// import kotlinx.parcelize.Parcelize
 
-@Parcelize
+//@Parcelize
 data class ApiMenu<T>(
     val badges: List<String> = emptyList(),
     val breadcrumbs: List<String>,
@@ -23,6 +23,6 @@ data class ApiMenu<T>(
     val servings: Servings,
     val spoonacularScore: String,
     val title: String
-): Parcelable
+) //: Parcelable
 
 

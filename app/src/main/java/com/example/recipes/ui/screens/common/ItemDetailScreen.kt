@@ -13,9 +13,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
-import com.example.recipes.data.entities.Item
+import com.example.recipes.data.database.Item
 import com.example.recipes.data.network.entities.Ei
-import com.example.recipes.ui.screens.common.Thumb
 import com.example.recipes.ui.screens.detailpizza.ItemDetailScaffold
 
 

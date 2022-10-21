@@ -18,8 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.example.recipes.data.entities.Recipe
-import com.example.recipes.data.repositories.RecipesRandomRepository
+import com.example.recipes.data.database.Recipe
 
 
 @ExperimentalCoilApi
@@ -27,7 +26,7 @@ import com.example.recipes.data.repositories.RecipesRandomRepository
 @Composable
 fun RecipesScreen(){
     // que la primera ves utilice la lista vacia de Recipes pero que las siguientes use esa misma lista en lugar d vover a crear una
-    var recipesState by remember { mutableStateOf(emptyList<Recipe>())}
+    val recipesState by remember { mutableStateOf(emptyList<Recipe>())}
 
     //se ejecuta cada vez que lo que pasemos por parametro cambie, como el unit no cambia solo se hara una vez en lugar de hacer siempre
     //la peticion en la corrutina al recrearse el composable.

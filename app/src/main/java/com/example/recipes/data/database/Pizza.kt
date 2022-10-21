@@ -1,8 +1,11 @@
-package com.example.recipes.data.entities
+package com.example.recipes.data.database
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity
 data class Pizza(
-    override val id: Int,
+    @PrimaryKey(autoGenerate = true) override val id: Int,
     override val price: String,
     override val title: String,
     override val image: String,

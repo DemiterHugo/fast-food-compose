@@ -1,18 +1,19 @@
 package com.example.recipes.data.repositories
 
 import com.example.recipes.BuildConfig
-import com.example.recipes.data.entities.Apple
-import com.example.recipes.data.entities.Result
-import com.example.recipes.data.network.ApiClient
+import com.example.recipes.data.database.Apple
+import com.example.recipes.data.database.Result
 import com.example.recipes.data.network.ApplesService
 import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.network.entities.apple.ApiResult
 import com.example.recipes.data.network.entities.apple.SearchResult
 import com.example.recipes.data.network.entities.tryCall
+import com.example.recipes.data.room.ItemDao
+import javax.inject.Inject
 
-class ApplesRepository(private val applesService: ApplesService) {
+class ApplesRepository @Inject constructor(private val applesService: ApplesService) {
 
-    private val apiKey = BuildConfig.API_KEY
+    //private val apiKey = BuildConfig.API_KEY
     private var cache: List<Apple> = emptyList()
     private var cacheNames: List<String> = emptyList()
 
@@ -20,24 +21,22 @@ class ApplesRepository(private val applesService: ApplesService) {
 
         return tryCall(action = {
             if (cache.isEmpty()) {
-                cache =
-                        applesService
-                    .getApples(apiKey, "apple", 4)
+                cache = applesService
+                    .getApples( "apple", 4)
                     .searchResults.map {
                         it.asApple()
                     }
             }
             cache
         })
-
     }
 
     suspend fun getNames(): Ei<List<String>> {
         return tryCall(action = {
             if (cacheNames.isEmpty()) {
-                cacheNames = ApiClient
-                    .applesService
-                    .getApples(apiKey, "apple", 4)
+                cacheNames =
+                    applesService
+                    .getApples(query = "apple", number = 4)
                     .searchResults.map {
                         it.asApple()
                     }.map {

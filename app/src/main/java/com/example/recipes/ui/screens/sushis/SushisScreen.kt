@@ -3,6 +3,7 @@ package com.example.recipes.ui.screens.sushis
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.*
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.annotation.ExperimentalCoilApi
 import com.example.recipes.ui.screens.common.ItemDetailScreen
@@ -12,7 +13,7 @@ import com.example.recipes.ui.screens.common.ItemsListScreen
 @ExperimentalCoilApi
 @ExperimentalFoundationApi
 @Composable
-fun SushisScreen(onClicked2: (id: Int) -> Unit, viewModel: SushisViewModel = viewModel()) {
+fun SushisScreen(onClicked2: (id: Int) -> Unit, viewModel: SushisViewModel = hiltViewModel()) {
 
     val state by viewModel.state.collectAsState()
 
@@ -25,7 +26,7 @@ fun SushisScreen(onClicked2: (id: Int) -> Unit, viewModel: SushisViewModel = vie
 @ExperimentalMaterialApi
 @ExperimentalCoilApi
 @Composable
-fun SushiDetailScreen(viewModel: SushisDetailViewModel = viewModel()) {
+fun SushiDetailScreen(viewModel: SushisDetailViewModel = hiltViewModel()) {
 
     val state by viewModel.state.collectAsState()
 

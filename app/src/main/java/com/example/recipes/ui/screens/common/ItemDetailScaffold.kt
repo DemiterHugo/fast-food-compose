@@ -3,7 +3,6 @@ package com.example.recipes.ui.screens.detailpizza
 import android.content.Context
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
@@ -14,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ShareCompat
-import com.example.recipes.data.entities.Item
+import com.example.recipes.data.database.Item
 import com.example.recipes.ui.screens.common.AppBarIcon
 import com.example.recipes.ui.theme.Yelow700Demi
 

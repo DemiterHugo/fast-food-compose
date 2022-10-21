@@ -1,14 +1,14 @@
 package com.example.recipes.data.repositories
 
 import com.example.recipes.BuildConfig
-import com.example.recipes.data.entities.Sushi
-import com.example.recipes.data.network.ApiClient
+import com.example.recipes.data.database.Sushi
 import com.example.recipes.data.network.SushisService
 import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.network.entities.pizzas.ApiMenu
 import com.example.recipes.data.network.entities.pizzas.ApiSushis
+import javax.inject.Inject
 
-class SushisRepository(private val sushisService: SushisService) : Repository<Sushi>() {
+class SushisRepository @Inject constructor(private val sushisService: SushisService) : Repository<Sushi>() {
 
     private val apiKey = BuildConfig.API_KEY
 

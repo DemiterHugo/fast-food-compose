@@ -1,22 +1,20 @@
 package com.example.recipes.ui.screens.sushis
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import arrow.core.right
-import com.example.recipes.data.entities.Pizza
-import com.example.recipes.data.entities.Sushi
+import com.example.recipes.data.database.Sushi
 import com.example.recipes.data.network.entities.Ei
-import com.example.recipes.data.repositories.PizzasRepository
 import com.example.recipes.data.repositories.SushisRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SushisViewModel(private val sushisRepository: SushisRepository): ViewModel() {
+@HiltViewModel
+class SushisViewModel @Inject constructor(private val sushisRepository: SushisRepository): ViewModel() {
 
     private var _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()

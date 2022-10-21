@@ -1,10 +1,10 @@
 package com.example.recipes.data.network.entities.apple
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+//import kotlinx.parcelize.Parcelize
 
 
-@Parcelize
+//@Parcelize
 data class ApiResult(
     val content: String,
     val dataPoints: List<String>,
@@ -15,4 +15,4 @@ data class ApiResult(
     val name: String,
     val relevance: Double,
     val type: String
-): Parcelable
+) //: Parcelable

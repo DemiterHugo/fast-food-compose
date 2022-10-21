@@ -1,10 +1,8 @@
-package com.example.recipes.data.network.entities.pizzas
+package com.example.recipes.data.database
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
+import androidx.room.Entity
 
-
-
+//@Entity
 data class Nutrient(
     val amount: Double,
     val name: String,

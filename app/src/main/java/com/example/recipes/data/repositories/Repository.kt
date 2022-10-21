@@ -1,9 +1,8 @@
 package com.example.recipes.data.repositories
 
-import com.example.recipes.data.entities.Item
+import com.example.recipes.data.database.Item
 import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.network.entities.tryCall
-import kotlinx.coroutines.withTimeout
 
 abstract class Repository<T: Item> {
 

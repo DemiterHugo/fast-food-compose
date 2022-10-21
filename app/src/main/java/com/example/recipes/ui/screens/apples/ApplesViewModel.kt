@@ -1,20 +1,19 @@
 package com.example.recipes.ui.screens.apples
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import arrow.core.Either
 import arrow.core.right
-import com.example.recipes.data.entities.Apple
+import com.example.recipes.data.database.Apple
 import com.example.recipes.data.network.entities.Ei
 import com.example.recipes.data.repositories.ApplesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ApplesViewModel(private val applesRepository: ApplesRepository): ViewModel() {
+@HiltViewModel
+class ApplesViewModel @Inject constructor(private val applesRepository: ApplesRepository): ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state

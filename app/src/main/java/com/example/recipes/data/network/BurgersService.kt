@@ -10,7 +10,7 @@ interface BurgersService {
 
     @GET("/food/menuItems/search?")
     suspend fun getBurgers(
-        @Query("apiKey") apiKey: String,
+        //@Query("apiKey") apiKey: String,
         @Query("query") query: String,
         @Query("addMenuItemInformation") addMenuItemInformation: Boolean
     ): ApiResponse<ApiMenu<ApiBugers>>
